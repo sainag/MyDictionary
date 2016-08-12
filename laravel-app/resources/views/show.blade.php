@@ -3,8 +3,12 @@
 @section('title','My Dictionary - Show')
 
 @section('content')
-<p>
-  This is the body content of the Show file
-</p>
-<h2>Words: {{ $word }}</h2>
+
+<h2>{{ $word->word }}</h2>
+<p><label>Meaning: </label>{{$word->meaning}}</p>
+<p><label>Language: </label>{{$word->language}}</p>
+<p><label>Note: </label>{{$word->note}}</p>
+<p><label>Created: </label>{{$word->created_at}}</p>
+<p><label>Updated: </label>{{$word->udpated_at}}</p>
+
 @stop
