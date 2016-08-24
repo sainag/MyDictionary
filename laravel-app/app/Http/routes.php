@@ -22,5 +22,12 @@ Route::get('contact','WordsController@contact');
 Route::resource('words','WordsController');
 
 Route::bind('words', function($value) {
-	return App\Word::where('wordid',$value)->first();
+  return App\Word::whereSlug($value)->first();
+});
+
+Route::model('users','User');
+Route::resource('users','UsersController');
+
+Route::bind('users', function($value) {
+  return App\User::where('id',$value)->first();
 });
