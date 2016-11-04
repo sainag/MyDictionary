@@ -10,6 +10,17 @@
 @stop
 
 @section('content')
+<p>
+   {!! link_to_route('words.create', 'Add Word') !!}
+</p>
+<div class="content">
+@if (Session::has('message'))
+  <div class="flash alert-info">
+    <p>{{ Session::get('message') }}</p>
+  </div>
+@endif
+@yield('content')
+</div>
 <h2>Words - {{$words->count()}} </h2>
 
     @if ( !$words->count() )
@@ -29,15 +40,4 @@
             @endforeach
         </ul>
     @endif
-    <p>
-       {!! link_to_route('words.create', 'Add Word') !!}
-   </p>
-   <div class="content">
-  	@if (Session::has('message'))
-  		<div class="flash alert-info">
-  			<p>{{ Session::get('message') }}</p>
-  		</div>
-  	@endif
-    @yield('content')
-  </div>
 @stop
