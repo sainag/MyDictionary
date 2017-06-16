@@ -2,13 +2,6 @@
 
 @section('title','My Dictionary - Home')
 
-@section('sidebar')
-  @parent
-  <p>
-    This is appended to master sidebar.
-  </p>
-@stop
-
 @section('content')
 <p>
    {!! link_to_route('words.create', 'Add Word') !!}
@@ -26,18 +19,26 @@
     @if ( !$words->count() )
         You have no words
     @else
-        <ul>
+        <table class="table table-bordered table-responsive">
+          <thead>
+            <tr>
+              <td>Word</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
             @foreach( $words as $word )
-                <li>
+                <tr>
                   {!! Form::open(array('class'=>'form-inline', 'method'=>'DELETE', 'route'=>array('words.destroy',$word->slug))) !!}
-                  <a href="{{ route ('words.show', $word->slug) }}">{{ $word->word }}</a>
-                  (
+                  <td><a href="{{ route ('words.show', $word->slug) }}">{{ $word->word }}</a></td>
+                  <td>
                     {!! link_to_route('words.edit','Edit',array($word->slug),array('class'=>'btn btn-info')) !!}
                     {!! Form::submit('Delete',array('class'=>'btn btn-danger')) !!}
-                  )
+                  </td>
                   {!! Form::close() !!}
-                </li>
+                </tr>
             @endforeach
-        </ul>
+          </tbody>
+        </table>
     @endif
 @stop
